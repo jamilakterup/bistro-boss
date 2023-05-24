@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* .carousel .thumb {
+    height: 50px !important;
+    object-fit: contain !important;
+} */
