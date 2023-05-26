@@ -6,7 +6,7 @@ const MenuCategory = ({items, title, coverImg}) => {
     return (
         <>
             {
-                title && <Cover img={coverImg} title={title} />
+                (title && title !== "offered") && <Cover img={coverImg} title={title} />
             }
             <div className="grid md:grid-cols-2 gap-4 my-12">
                 {

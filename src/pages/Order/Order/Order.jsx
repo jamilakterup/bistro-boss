@@ -23,6 +23,7 @@ const Order = () => {
     const drink = menu.filter(item => item.category === 'drinks');
     const offered = menu.filter(item => item.category === 'offered');
 
+    console.log(`active ${active}`);
     return (
         <div>
             <Helmet>
@@ -30,14 +31,15 @@ const Order = () => {
             </Helmet>
             <Cover title="Order" img={orderImg} />
 
+
             <Tabs defaultIndex={active} onSelect={(index) => setActive(index)}>
                 <TabList>
                     <Tab>Salad</Tab>
-                    <Tab>pizza</Tab>
-                    <Tab>soups</Tab>
-                    <Tab>desserts</Tab>
-                    <Tab>drinks</Tab>
-                    <Tab>offered</Tab>
+                    <Tab >pizza</Tab>
+                    <Tab >soups</Tab>
+                    <Tab >desserts</Tab>
+                    <Tab >drinks</Tab>
+                    <Tab >offered</Tab>
                 </TabList>
                 <TabPanel>
                     <OrderTab items={salad} />
