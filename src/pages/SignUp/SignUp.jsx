@@ -3,6 +3,8 @@ import {Helmet} from "react-helmet-async";
 import {useForm} from "react-hook-form";
 import {AuthContext} from "../../providers/AuthProvider";
 import {Link, useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 const SignUp = () => {
@@ -17,13 +19,33 @@ const SignUp = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 updateUser(data.name, data.photo)
-                    .then(() => { })
+                    .then(() => {
+                        const saveUser = {name: data.name, email: data.email}
+                        console.log(saveUser);
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {'content-type': 'application/json'},
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire(
+                                        'Successful!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    )
+                                    navigate("/")
+                                }
+                            })
+                    })
                     .catch(err => console.log(err))
-                navigate("/")
 
             })
             .catch(err => console.log(err))
-        reset()
+
     };
 
 
@@ -83,6 +105,7 @@ const SignUp = () => {
                             </div>
                             <p><small>Already have an account? <Link to='/login'>Login</Link></small></p>
                         </form>
+                        <SocialLogin />
                     </div>
                 </div>
             </div>
