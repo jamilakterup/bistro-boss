@@ -19,7 +19,9 @@ const AuthProvider = ({children}) => {
     }
 
     const updateUser = (name, photo) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, {
+
             displayName: name, photoURL: photo
         })
     }
@@ -51,7 +53,9 @@ const AuthProvider = ({children}) => {
                     })
             } else {
                 localStorage.removeItem('access-token');
+
             }
+            setLoading(false)
         })
         return () => {
             unsubscribe();
