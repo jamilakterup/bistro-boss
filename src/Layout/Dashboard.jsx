@@ -3,13 +3,16 @@ import {FaBook, FaUsers, FaUtensils} from "react-icons/fa";
 import {FaHome} from "react-icons/fa";
 import {NavLink, Outlet} from "react-router-dom";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 
 const Dashboard = () => {
     const [cart] = useCart();
 
     // TODO: load data from the server to have dynamic isAdmin based on data
-    const isAdmin = true;
+    // const isAdmin = false;
+    const isAdmin = useAdmin();
+    console.log(isAdmin);
 
     return (
         <div className="drawer drawer-mobile">
@@ -22,7 +25,7 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80">
                     {
-                        isAdmin ? <>
+                        isAdmin[0] ? <>
                             <li><NavLink to='/dashboard/home'><FaHome className="text-3xl" />Admin Home</NavLink></li>
                             <li><NavLink to='/dashboard/reservation'><FaUtensils className="text-3xl" />Add Items</NavLink></li>
                             <li><NavLink to='/dashboard/myCart'><FaBook className="text-3xl" />Manage Bookings</NavLink></li>
