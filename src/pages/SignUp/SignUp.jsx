@@ -13,7 +13,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const onSubmit = data => {
-        console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
@@ -29,7 +28,6 @@ const SignUp = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                console.log(data);
                                 if (data.insertedId) {
                                     reset();
                                     Swal.fire(
